@@ -1,0 +1,77 @@
+package com.example.Login;
+
+public class productDetails {
+    private Integer ProductId;
+    private String ProductName;
+    private Integer ActualPrice;
+    private String ProductType;
+    private String SellingChannel;
+    private Integer DiscountPercent;
+    private Integer SellingPrice;
+
+    public productDetails(Integer productId, String productName, Integer actualPrice, String productType, String sellingChannel, Integer discountPercent) {
+        ProductId = productId;
+        ProductName = productName;
+        ActualPrice = actualPrice;
+        ProductType = productType;
+        SellingChannel = sellingChannel;
+        DiscountPercent = discountPercent;
+        SellingPrice = (actualPrice*(100-discountPercent))/100;
+    }
+
+    public Integer getProductId() {
+        return ProductId;
+    }
+
+    public void setProductId(Integer productId) {
+        ProductId = productId;
+    }
+
+    public String getProductName() {
+        return ProductName;
+    }
+
+    public void setProductName(String productName) {
+        ProductName = productName;
+    }
+
+    public Integer getActualPrice() {
+        return ActualPrice;
+    }
+
+    public void setActualPrice(Integer actualPrice) {
+        ActualPrice = actualPrice;
+    }
+
+    public Integer getSellingPrice() {
+        return SellingPrice;
+    }
+
+    public void setSellingPrice(Integer discountP,Integer actualP) {
+        SellingPrice = (actualP*(100-discountP))/100;
+    }
+
+    public String isProductType() {
+        return ProductType;
+    }
+
+    public void setProductType(String  productType) {
+        ProductType = productType;
+    }
+
+    public String getSellingChannel() {
+        return SellingChannel;
+    }
+
+    public void setSellingChannel(String sellingChannel) {
+        SellingChannel = sellingChannel;
+    }
+
+    public Integer getDiscountPercent() {
+        return DiscountPercent;
+    }
+
+    public void setDiscountPercent(Integer discountPercent) {
+        DiscountPercent = discountPercent;
+    }
+}
