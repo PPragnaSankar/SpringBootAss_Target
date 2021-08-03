@@ -1,0 +1,35 @@
+package com.example.Login;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.scanner.Constant;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+public class TargetRetailer {
+    static Map<Integer,productDetails> products= new HashMap<>();
+    static {
+        productDetails p1=new productDetails(1111,"Bottle",256,"Own-Brand","Store Only",10);
+        products.put(p1.getProductId(),p1);
+        productDetails p2=new productDetails(1112,"Bins",200,"Own-Brand","Online Unique",5);
+        products.put(p2.getProductId(),p2);
+        productDetails p3=new productDetails(1113,"Batteries",100,"External","Online Unique",5);
+        products.put(p3.getProductId(),p3);
+    }
+    @PutMapping(path ="/products",produces ="application/json" )
+    public ResponseEntity<productDetails> getId(@RequestBody InputID input1){
+        products.get(input1.getId()).setDiscountPercent(input1.getDiscount());
+        products.get(input1.getId()).setSellingPrice(input1.getDiscount(),products.get(input1.getId()).getActualPrice());
+        return ResponseEntity.ok(products.get(input1.getId()));
+    }
+    @GetMapping(path = "/products/{id}",produces = "application/json")
+    public ResponseEntity<productDetails> getDetails(@PathVariable Integer id){
+        if(products.containsKey(id)){
+           return ResponseEntity.ok(products.get(id));
+        }
+        return ResponseEntity.ok(new productDetails(0,"Not Available",0,"Not Available","Not Available",0));
+    }
+
+}
